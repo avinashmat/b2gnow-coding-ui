@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EmployeeService } from './employee.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'b2g-now-coding-ui';
 
+  constructor(private employeeService: EmployeeService) { }
+
   employees = [
     { id: 1, name: 'ABC' },
     { id: 1, name: 'DEF' },
@@ -16,7 +19,9 @@ export class AppComponent {
 
   searchText = "";
 
-  get filteredEmployees(){
+  get filteredEmployees() {
+    // this.employeeService.getDistinctEmployees().subscribe((data: any[]) => { });
+
     return this.employees.filter(employee => {
       return employee.name.toLowerCase().includes(this.searchText.toLowerCase());
     });
